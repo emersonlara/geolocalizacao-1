@@ -1,0 +1,33 @@
+package com.aplicacao.geolocalizacao.api.mapeador;
+
+import org.springframework.stereotype.Service;
+
+import com.aplicacao.geolocalizacao.api.model.ClienteEntity;
+import com.aplicacao.geolocalizacao.api.model.DTO.ClienteEntityDTO;
+
+@Service
+public class ClienteMapper {
+	
+	
+	public ClienteEntityDTO converteClienteDTO(ClienteEntity clienteEntity) {
+		
+		ClienteEntityDTO clienteEntityDTO = new ClienteEntityDTO();
+		
+//		clienteEntityDTO.setNomeCliente(clienteEntity.getNome());
+//		clienteEntityDTO.setIdade(clienteEntity.getIdade());
+//		clienteEntityDTO.setMaxTemp(clienteEntity.getTemperatura().getTemperaturaMaxima());
+//		clienteEntityDTO.setMinTemp(clienteEntity.getTemperatura().getTemperaturaMinima());
+		
+		clienteEntityDTO.builder().
+			idade(clienteEntity.getIdade())
+			.maxTemp(clienteEntity.getTemperatura().getTemperaturaMaxima())
+			.maxTemp(clienteEntity.getTemperatura().getTemperaturaMinima())
+			.nomeCliente(clienteEntity.getNome())
+			.build();
+		
+		
+		return clienteEntityDTO;
+		
+	}
+	
+}

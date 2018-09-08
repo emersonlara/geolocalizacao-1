@@ -1,0 +1,5 @@
+package com.aplicacao.geolocalizacao.api.model;
+
+public class TemperaturaOrigem {
+
+}

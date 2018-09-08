@@ -1,0 +1,5 @@
+package com.aplicacao.geolocalizacao.api.controller;
+
+public class ClienteController {
+
+}

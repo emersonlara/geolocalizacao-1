@@ -1,0 +1,25 @@
+package com.aplicacao.geolocalizacao.api.mapeador;
+
+import com.aplicacao.geolocalizacao.api.model.ClienteEntity;
+import com.aplicacao.geolocalizacao.api.model.DTO.ClienteEntityDTO;
+
+public class ClienteMapper {
+	
+	
+	public static ClienteEntityDTO converteClienteDTO(ClienteEntity clienteEntity) {
+		
+		ClienteEntityDTO clienteEntityDTO = new ClienteEntityDTO();
+		
+		clienteEntityDTO.setNomeCliente(clienteEntity.getNome());
+		clienteEntityDTO.setIdade(clienteEntity.getIdade());
+		clienteEntityDTO.setMaxTemp(clienteEntity.getTemperatura().getTemperaturaMaxima());
+		clienteEntityDTO.setMinTemp(clienteEntity.getTemperatura().getTemperaturaMinima());
+		return clienteEntityDTO;
+		
+		
+		
+				
+		
+	}
+	
+}

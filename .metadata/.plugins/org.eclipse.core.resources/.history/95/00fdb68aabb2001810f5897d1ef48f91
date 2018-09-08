@@ -1,0 +1,111 @@
+package com.aplicacao.geolocalizacao.api.util;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.codehaus.groovy.transform.tailrec.GotoRecurHereException;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.springframework.stereotype.Component;
+
+import com.aplicacao.geolocalizacao.api.mapeador.DadosGeolocalizacaoMapper;
+import com.aplicacao.geolocalizacao.api.mapeador.GeolocalizacaoMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+@Component
+public class WebUtils {
+	
+	
+	 
+
+    public static String getClientIp(HttpServletRequest request) {
+
+        String remoteAddr = "";
+
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+        
+        geolocalizacao(remoteAddr);
+        
+
+        return remoteAddr;
+    } 
+    
+    
+    public static void geolocalizacao(String ip) {
+    	URL url;
+		try {
+			url = new URL("https://ipvigilante.com/8.8.8.8");
+			URLConnection conecta = url.openConnection();
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(conecta.getInputStream()));
+			
+			String jsonString  = buffer.readLine();
+			
+			Gson gson = new Gson();
+			GeolocalizacaoMapper geolocalizacaoMapper = gson.fromJson(jsonString, GeolocalizacaoMapper.class);
+			
+			System.out.println(geolocalizacaoMapper);
+			
+			
+			
+			
+						
+//			ObjectMapper mapper = new ObjectMapper();
+//			
+//			GeolocalizacaoMapper geolocalizacaoMapper = mapper.readValue(jsonString, GeolocalizacaoMapper.class);
+			
+//			System.out.println("Tipo: " + geolocalizacaoMapper.getType());
+//	        System.out.println("Versão: " + geolocalizacaoMapper.getVersion());
+//
+//	        System.out.println();
+//
+//	        System.out.println("Dados do champion:");
+//	        System.out.println("---------------");
+
+//	        for (DadosGeolocalizacaoMapper dadosChampion : geolocalizacaoMapper.getData().values()) {
+//	            System.out.println("ID: " + dadosChampion.getId());
+//	            System.out.println("KEY: " + dadosChampion.getKey());
+//	            System.out.println("NOME: " + dadosChampion.getName());
+//	            System.out.println("Title: " + dadosChampion.getTitle());
+//	            System.out.println("---------------");
+//	        }
+	        
+//	        for(DadosGeolocalizacaoMapper dadosGeolocalizacaoMapper : geolocalizacaoMapper.getData().values()) {
+	        	
+//	        	System.out.println("ipv4: " + dadosGeolocalizacaoMapper.getIpv4());
+//	        	System.out.println("continent_name: " + dadosGeolocalizacaoMapper.getContinent_name() );
+//	        	System.out.println("country_name: " + dadosGeolocalizacaoMapper.getCountry_name());
+//	        	System.out.println("subdivision_1_name: " + dadosGeolocalizacaoMapper.getSubdivision_1_name());
+//	        	System.out.println("subdivision_2_name: " + dadosGeolocalizacaoMapper.getSubdivision_2_name());
+//	        	System.out.println("city_name: " + dadosGeolocalizacaoMapper.getCity_name());
+//	        	System.out.println("latitude: " + dadosGeolocalizacaoMapper.getLatitude());
+//	        	System.out.println("longitude: " + dadosGeolocalizacaoMapper.getLongitude());
+	        	
+//	        }
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    }
+    
+	
+}
