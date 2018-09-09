@@ -53,7 +53,7 @@ public class CustomerController {
 	@PutMapping("/{codigo}")
 	public ResponseEntity<CustomerEntity> upgradeClient(@PathVariable Long codigo, @RequestBody CustomerEntity clienteEntity){
 		CustomerEntity clienteSalvo = service.upgradeClient(codigo, clienteEntity);
-		return ResponseEntity.ok(clienteSalvo);
+		return clienteSalvo !=null ?   ResponseEntity.ok(clienteSalvo) : ResponseEntity.notFound().build();
 	}
 	
 	
@@ -73,6 +73,7 @@ public class CustomerController {
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT) 
 	public void remove(@PathVariable Long codigo) {
+	
 		repository.delete(codigo);
 	}
 

@@ -55,7 +55,7 @@ public class ServiceCustomer {
 		CustomerEntity clienteOld = repository.findOne(codigo);
 		
 		if(clienteOld == null) {
-			throw new EmptyResultDataAccessException(1);
+			return null;
 		}
 		
 		BeanUtils.copyProperties(clienteSalvo, clienteOld, "id");
@@ -67,7 +67,7 @@ public class ServiceCustomer {
 		
 		CustomerEntity clienteEntity = repository.findOne(codigo);
 		if(clienteEntity == null) {
-			throw new EmptyResultDataAccessException(1);
+			return null;
 		}
 		
 		ClienteEntityDTO clienteEntityDTO = MapperCustomer.converteClienteDTO(clienteEntity);
@@ -100,5 +100,6 @@ public class ServiceCustomer {
 		
 		return woeid;
 	}
+	
 	
 }
