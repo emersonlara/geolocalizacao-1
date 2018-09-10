@@ -30,8 +30,8 @@ public class GeolocationService {
     	MapperGeolocation geolocalizacaoMapper = null;
     	ArrayList<String> geoLocalizacao = new ArrayList<String>();
 		try {
-//			url = new URL(IPVISITANTE + ip);
-			url = new URL(IPVISITANTE + "189.105.87.167");
+			url = new URL(IPVISITANTE + ip);
+//			url = new URL(IPVISITANTE + "189.105.87.167");
 			URLConnection conecta = url.openConnection();
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(conecta.getInputStream()));
 			
